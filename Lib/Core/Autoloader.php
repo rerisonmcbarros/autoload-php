@@ -15,9 +15,9 @@ class Autoloader{
 
 	public function load($class){
 
-		$this->class = $class;
+		$this->class = str_replace("\\", "/", $class);
 
-		echo "<pre>", var_dump($this->rootPath()), "</pre>";
+		echo "<pre>", var_dump($this->rootPath(), $this->getClassName()), "</pre>";
 	}
 
 	public function rootPath(){
@@ -25,6 +25,13 @@ class Autoloader{
 		$rootPath = strstr(__DIR__, $this->rootFolder, true).$this->rootFolder."/";
 
 		return $rootPath;
+	}
+
+	public function getClassName(){
+
+		$className = substr(strrchr($this->class, "/"),1);
+
+		return $className;
 	}
 
 }
