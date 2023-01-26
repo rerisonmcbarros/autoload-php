@@ -17,7 +17,7 @@ class Autoloader{
 
 		$this->class = str_replace("\\", "/", $class);
 
-		echo "<pre>", var_dump($this->rootPath(), $this->getClassName()), "</pre>";
+		echo "<pre>", var_dump($this->rootPath(), $this->getClassName(), $this->getNamespace()), "</pre>";
 	}
 
 	public function rootPath(){
@@ -32,6 +32,13 @@ class Autoloader{
 		$className = substr(strrchr($this->class, "/"),1);
 
 		return $className;
+	}
+
+	public function getNamespace(){
+
+		$namespace = substr($this->class, 0, strrpos($this->class, "/")+1);
+
+		return $namespace;
 	}
 
 }
