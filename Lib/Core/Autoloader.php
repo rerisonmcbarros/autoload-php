@@ -15,9 +15,21 @@ class Autoloader{
 
 	public function load($class){
 
-		$this->class = str_replace("\\", "/", $class);
+		if($class){
 
-		echo "<pre>", var_dump($this->rootPath(), $this->getClassName(), $this->getNamespace()), "</pre>";
+			$this->class = str_replace("\\", "/", $class);
+		}
+		
+		$file = $this->rootPath().$this->getNamespace().$this->getClassName().".php";
+
+		if(file_exists($file) && is_file($file)){
+
+			require_once $file;
+
+			return true;
+		}
+
+		return false;
 	}
 
 	public function rootPath(){
