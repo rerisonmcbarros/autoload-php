@@ -16,6 +16,15 @@ class Autoloader{
 	public function load($class){
 
 		$this->class = $class;
+
+		echo "<pre>", var_dump($this->rootPath()), "</pre>";
+	}
+
+	public function rootPath(){
+
+		$rootPath = strstr(__DIR__, $this->rootFolder, true).$this->rootFolder."/";
+
+		return $rootPath;
 	}
 
 }
